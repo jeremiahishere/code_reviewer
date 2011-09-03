@@ -35,12 +35,22 @@ ActiveRecord::Schema.define(:version => 20110903184400) do
     t.datetime "updated_at"
   end
 
+  create_table "review_submissions", :force => true do |t|
+    t.integer  "review_id"
+    t.text     "diff_text"
+    t.datetime "submission_date"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reviews", :force => true do |t|
     t.integer  "project_id"
     t.integer  "submitter_id"
     t.string   "trunk_branch"
     t.string   "development_branch"
     t.date     "close_date"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

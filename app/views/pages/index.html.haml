@@ -1,1 +1,12 @@
-Review code on this site
+- if user_signed_in?
+  %p
+    = link_to "Create Project", new_project_path
+  %p
+    = link_to "Create Review", new_review_path
+    %br
+    At some point, make this a form that creates a review for the selected project
+  %h2 Pending Reviews
+  %p
+    Pending reviews will go here at some point
+- else
+  Please sign in to review your code

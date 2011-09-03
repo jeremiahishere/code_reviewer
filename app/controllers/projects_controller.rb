@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  load_and_authorize_resource
   # GET /projects/all
   def index
     if params[:all] == 'y'
