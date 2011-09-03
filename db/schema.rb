@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(:version => 20110903184400) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "repo_url"
-    t.string   "default_trunk_branch"
+    t.string   "repo_name"
+    t.string   "trunk_branch"
     t.boolean  "require_manager_approval", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20110903184400) do
   create_table "reviews", :force => true do |t|
     t.integer  "project_id"
     t.integer  "submitter_id"
-    t.string   "trunk_branch"
     t.string   "development_branch"
     t.date     "close_date"
     t.text     "description"

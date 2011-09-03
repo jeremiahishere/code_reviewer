@@ -12,7 +12,6 @@ class CreateReviews < ActiveRecord::Migration
     create_table :reviews do |t|
       t.integer :project_id
       t.integer :submitter_id
-      t.string :trunk_branch
       t.string :development_branch
       t.date :close_date
       t.text :description

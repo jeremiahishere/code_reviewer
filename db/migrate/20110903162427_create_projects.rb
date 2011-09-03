@@ -3,7 +3,8 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.string :name
       t.string :repo_url
-      t.string :default_trunk_branch
+      t.string :repo_name
+      t.string :trunk_branch
       t.boolean :require_manager_approval, :default => false
 
       t.timestamps

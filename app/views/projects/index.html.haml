@@ -3,6 +3,7 @@
 %table
   %tr
     %th Name
+    %th Repo name
     %th Repo url
     %th
     %th
@@ -11,6 +12,7 @@
   - @projects.each do |project|
     %tr
       %td= project.name
+      %td= project.repo_name
       %td= project.repo_url
       %td= link_to 'Show', project
       %td= link_to 'Edit', edit_project_path(project)

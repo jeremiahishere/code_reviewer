@@ -3,7 +3,7 @@ class Review < ActiveRecord::Base
   belongs_to :submitter, :foreign_key => :submitter_id, :class_name => "User"
   has_many :review_submissions
 
-  validates_presence_of :project, :submitter, :trunk_branch, :development_branch
+  validates_presence_of :project, :submitter, :development_branch
 
   def self.member_reviews(user)
     all.select { |r| r.project.members.include?(user) }
