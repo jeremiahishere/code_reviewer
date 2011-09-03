@@ -26,7 +26,7 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new
     if user.has_role?(:coder)
-      can :manage, :all
+      can :manage, User
     else
       # basic user can't do anything except view the home page and sign in
     end
