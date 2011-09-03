@@ -2,6 +2,7 @@ CodeReviewer::Application.routes.draw do
   devise_for :users
   resources :users
   resources :projects
+  resources :reviews
 
   root :to => "pages#index"
 

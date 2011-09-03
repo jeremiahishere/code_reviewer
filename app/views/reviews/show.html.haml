@@ -1,0 +1,19 @@
+%p
+  %b Submitter:
+  = @review.submitter.name if @review.submitter
+%p
+  %b Project:
+  = @review.project.name
+%p
+  %b Trunk branch:
+  = @review.trunk_branch
+%p
+  %b Development branch:
+  = @review.development_branch
+%p
+  %b Close date:
+  = @review.close_date
+
+= link_to 'Edit', edit_review_path(@review)
+\|
+= link_to 'Back', reviews_path

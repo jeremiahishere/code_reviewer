@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :project_members
   has_many :projects, :through => :project_members
 
+  has_many :reviews, :foreign_key => :submitter_id
+
   has_many :assignments
   has_many :roles, :through => :assignments
 
@@ -17,7 +19,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids
 
   def name
-    email
+    self.email
   end
 
   def has_role?(role_sym)
