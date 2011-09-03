@@ -5,6 +5,7 @@ gem 'mysql2', '~>0.2.7'
 gem 'rake', '>= 0.9.2'
 
 gem "devise", "~> 1.4.2"
+gem "cancan", "~> 1.6.5"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -12,6 +13,7 @@ gem "devise", "~> 1.4.2"
 gem 'capistrano'
 gem 'capistrano-ext', '~>1.2.1'
 
+gem "formtastic", "~> 1.2.4"
 gem "haml-rails", "~>0.3.4"
 gem "jquery-rails"
 

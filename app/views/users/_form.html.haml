@@ -1,0 +1,5 @@
+= semantic_form_for @user do |f|
+  = f.semantic_errors
+  = f.inputs do
+    = f.input :roles, :as => :check_boxes
+  = f.buttons
