@@ -26,7 +26,14 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new
     if user.has_role?(:coder)
-      can :manage, User
+      # can only see their own projects
+    elsif user.has_role?(:manager)
+      # can see all projects
+      # future feature: at least one manager must approve a code review for it to be accepted
+    elsif user.has_role?(:admin)
+      # can see everything on the site
+      # including user setup
+      can :manage, :all
     else
       # basic user can't do anything except view the home page and sign in
     end
