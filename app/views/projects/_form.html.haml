@@ -1,0 +1,10 @@
+= semantic_form_for @project do |f|
+  = f.semantic_errors
+  = f.inputs do
+    = f.input :name 
+    = f.input :repo_url, :size => 150, :hint => "The code review server needs to have access to the project.  Use a readonly url for a public project or add the key to github for a private project."
+    = f.input :default_trunk_branch, :hint => "This is the default branch your reviews will compare to."
+    = f.input :require_manager_approval, :hint => "If this is set to true, the code reviews muts be approved by all users on the project and at least one manager not on the project."
+    = f.input :users, :as => :check_boxes, :label => "Members", :hint => "Each selected user here has to accept a code review before it is approved."
+  = f.buttons
+

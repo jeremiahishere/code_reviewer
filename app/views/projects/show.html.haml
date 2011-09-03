@@ -1,0 +1,21 @@
+%p
+  %b Name:
+  = @project.name
+%p
+  %b Repo url:
+  = @project.repo_url
+%p
+  %b Default trunk branch:
+  = @project.default_trunk_branch
+%p
+  %b Require Manager approval:
+  = @project.require_manager_approval
+%p
+  %b Members:
+  %ul
+    - @project.users.each do |user|
+      %li= user.name
+
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path
