@@ -86,4 +86,16 @@ class ReviewsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def add_submission
+    @review = Review.find(params[:id])
+    @submission = ReviewSubmission.new(:review => @review, :submission_date => Time.now)
+    respond_to do |format|
+      if @submission.save
+        format.html { redirect_to(reviews_url, :notice => "Submission created sucessfully") }
+      else
+        format.html { redirect_to(reviews_url, :notice => "Submission was not created successfully") }
+      end
+    end
+  end
 end

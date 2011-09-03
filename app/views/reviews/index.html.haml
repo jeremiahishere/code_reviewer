@@ -2,11 +2,11 @@
 
 %table
   %tr
-    %th Trunk branch
-    %th Development branch
-    %th Closed
     %th Submitter
     %th Project
+    %th Development branch
+    %th Closed
+    %th
     %th
     %th
     %th
@@ -15,9 +15,15 @@
     %tr
       %td= review.submitter.name
       %td= review.project.name
-      %td= review.trunk_branch
       %td= review.development_branch
-      %td= review.close_date
+      %td= review.closed?
+      %td= link_to "Review", review
+      %td
+        - if review.submitter == current_user
+          - if review.has_submissions?
+            = link_to "Resubmit", review_add_submission_path(review)
+          - else
+            = link_to "Submit", review_add_submission_path(review)
       %td= link_to 'Show', review
       %td= link_to 'Edit', edit_review_path(review)
       %td= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete

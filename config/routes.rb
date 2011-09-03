@@ -3,6 +3,7 @@ CodeReviewer::Application.routes.draw do
   resources :users
   resources :projects
   resources :reviews
+  match "reviews/:id/add_submission", :to => "reviews#add_submission", :as => "review_add_submission"
 
   root :to => "pages#index"
 
