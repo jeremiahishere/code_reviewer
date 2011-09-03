@@ -13,6 +13,7 @@ gem 'capistrano'
 gem 'capistrano-ext', '~>1.2.1'
 
 gem "haml-rails", "~>0.3.4"
+gem "jquery-rails"
 
 
 
