@@ -1,15 +1,11 @@
 class ProjectsController < ApplicationController
   # GET /projects/all
   def index
-    @projects = Project.all
-
-    respond_to do |format|
-      format.html # index.html.erb
+    if params[:all] == 'y'
+      @projects = Project.all
+    else 
+      @projects = Project.member_projects(current_user)
     end
-  end
-
-  def member_projects
-    @projects = Project.member_projects(current_user)
 
     respond_to do |format|
       format.html # index.html.erb
