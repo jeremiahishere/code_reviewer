@@ -47,10 +47,10 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(params[:review])
     @review.submitter = current_user
-    @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
 
     respond_to do |format|
       if @review.save
+        @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
         if @submission.save
           format.html { redirect_to(@review, :notice => 'Review and Submission were successfully created.') }
         else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903184400) do
+ActiveRecord::Schema.define(:version => 20110904032201) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "role_id"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20110903184400) do
     t.text     "diff_text"
     t.datetime "submission_date"
     t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "review_votes", :force => true do |t|
+    t.integer  "review_id"
+    t.integer  "user_id"
+    t.integer  "vote"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
