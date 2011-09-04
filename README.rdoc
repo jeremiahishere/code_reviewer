@@ -1,0 +1,45 @@
+= Code Reviewer
+
+Review code in github repos
+
+= Workflow
+
+1. Create a user or sign in
+  1. If creating a user, an admin has to give you roles before you can do anything
+2. Create a new project using a valid and accessible repo url
+3. Create a code review specifying a valid branch pushed to the repo's origin
+4. The code review should automatically create a diff and email all the project members
+5. Click on the view diff link on the review page to see the diff and vote on the code
+6. When all members and 1 manager (if that option is selected) have voted to accept, the close link on the review page will appear
+  1. If the code needs changes, push the branch with the changes and click the resubmit link, this resets everyone's voteds
+7. Click the close link to complete the review
+8. Manually merge the project in github
+
+= Stuff the currently works
+
+* Adding a new public project and trunk branch
+* Adding a code review to compare a branch to the project's trunk branch
+* Diff creation and review
+* Voting system; users can vote to accept or reject a code review
+* Vote tallying and review closing when enough people have voted to accept a change
+
+= Stuff that partially works
+
+* Adding a private project: you have to manually figure out the server's public key and add it to your project
+* Diff creation might be backwards wit the + and - lines reversed
+* The permissions system is only setup for all permissions on the admin user
+  * the manager and coder roles need to be setup as well
+
+= Stuff that is not included yet
+
+* All email ontifications including:
+  * notification of all project members on review submission
+  * notification of all managers on review submission
+  * notification of all project members on review resubmission
+  * notification of all managers on review resubmission
+  * notification to the requesting user when a submission is voted or commented on
+  * notification to the requesting user when a submiession is approved through the voting system
+* The entire commenting system
+* A better voting system using pure ajax calls that updates other sections of the page
+* Diff parsing that includes highlighting based on addition and reomval of code and code folding based on file
+  * line numbers would be nice as well
