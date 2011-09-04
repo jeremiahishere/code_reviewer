@@ -43,7 +43,7 @@ class Project < ActiveRecord::Base
 
   # fetch, checkout branch, pull branch, checkout trunk branch
   def fetch_and_pull_branch(branch_name)
-    `cd #{project_repo_path} && git fetch && git checkout #{branch_name} && git pull origin #{branch_name} && checkout #{self.trunk_branch}`
+    `cd #{project_repo_path} && git fetch && git checkout #{branch_name} && git pull origin #{branch_name} && git checkout #{self.trunk_branch}`
   end
 
   # runs a diff on the branch and trunk
