@@ -1,0 +1,9 @@
+%table
+  %tr
+    %th User
+    %th Vote
+  - review.review_votes.each do |vote|
+    %tr
+      %td= vote.user.name
+      %td= vote.display_vote
+

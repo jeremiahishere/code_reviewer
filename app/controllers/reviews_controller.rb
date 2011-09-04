@@ -113,6 +113,7 @@ class ReviewsController < ApplicationController
   def review_submission
     @review = Review.find(params[:id])
     @submission = ReviewSubmission.where(:review_id => @review.id).order(:submission_date).last
+    @vote = ReviewVote.where(:review_id => @review.id, :user_id => current_user.id).first
     respond_to do |format|
       format.html # review.html.haml
     end

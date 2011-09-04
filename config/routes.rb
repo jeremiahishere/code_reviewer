@@ -6,6 +6,8 @@ CodeReviewer::Application.routes.draw do
   match "reviews/:id/add_submission", :to => "reviews#add_submission", :as => "review_add_submission"
   match "reviews/:id/review_submission", :to => "reviews#review_submission", :as => "review_review_submission"
 
+  match "votes/:id", :to => "review_votes#vote", :as => "review_vote"
+
   root :to => "pages#index"
 
   # The priority is based upon order of creation:

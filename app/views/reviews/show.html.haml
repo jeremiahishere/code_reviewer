@@ -12,15 +12,7 @@
   = @review.close_date
 %p
   %b Votes:
-%table
-  %tr
-    %th User
-    %th Vote
-  - @review.review_votes.each do |vote|
-    %tr
-      %td= vote.user.name
-      %td= vote.display_vote
-  
+= render :partial => "member_votes", :locals => { :review => @review }  
 
 = link_to 'Edit', edit_review_path(@review)
 \|
