@@ -1,7 +1,7 @@
 = semantic_form_for @review do |f|
   = f.semantic_errors
   = f.inputs do
-    = f.input :project, :as => :select
+    = f.input :project, :as => :select, :collection => Project.member_projects(current_user)
     = f.input :development_branch
     = f.input :description
   = f.buttons

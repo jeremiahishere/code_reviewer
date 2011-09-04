@@ -23,13 +23,14 @@ Review code in github repos
 * Voting system; users can vote to accept or reject a code review
 * Vote tallying and review closing when enough people have voted to accept a change
 * Leaving comments for code reviews
+* Permission system stops you from seeing what you aren't supposed to
+  * Unless you guess the url, not yet a cancan expert
+  * Also determines who is a manager for votes, and who can be on a project (coders only)
 
 = Stuff that partially works
 
 * Adding a private project: you have to manually figure out the server's public key and add it to your project
 * Diff creation might be backwards wit the + and - lines reversed
-* The permissions system is only setup for all permissions on the admin user
-  * the manager and coder roles need to be setup as well
 
 = Stuff that is not included yet
 

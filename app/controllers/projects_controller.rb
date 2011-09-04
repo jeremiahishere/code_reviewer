@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   def index
     if params[:all] == 'y'
       @projects = Project.all
-    else 
+    else
       @projects = Project.member_projects(current_user)
     end
 

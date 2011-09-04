@@ -9,5 +9,5 @@
       %li= link_to "All Projects", projects_path + "?all=y"
     - if can? :read, Review 
       %li= link_to "Your Reviews", reviews_path
-    - if can? :read, Review
+    - if can? :all_reviews, Review
       %li= link_to "All Reviews", reviews_path + "?all=y"

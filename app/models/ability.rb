@@ -30,11 +30,16 @@ class Ability
 
     if user.has_role?(:coder)
       # can only see their own projects
+      can [:create, :read, :update, :destroy], [Project, Review]
+      can [:add_submission, :review_submission, :close], Review
+      can :vote, ReviewVote
+      can :add_comment, Comment
     end
 
     if user.has_role?(:manager)
       # can see all projects
-      # future feature: at least one manager must approve a code review for it to be accepted
+      can :manage, [Project, Review, ReviewVote, Comment]
+      # cannot see users
     end
 
     if user.has_role?(:admin)

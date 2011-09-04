@@ -1,8 +1,10 @@
 - if user_signed_in?
-  %p
-    = link_to "Create Project", new_project_path
-  %p
-    = link_to "Create Review", new_review_path
+  - if can? :create, Project
+    %p
+      = link_to "Create Project", new_project_path
+  - if can? :create, Review
+    %p
+      = link_to "Create Review", new_review_path
     %br
     At some point, make this a form that creates a review for the selected project
   %h2 Pending Reviews
