@@ -17,7 +17,7 @@
       %td= review.project.name
       %td= review.development_branch
       %td= review.closed?
-      %td= link_to "Review", review
+      %td= link_to "Review", review_review_submission_path(review)
       %td
         - if review.submitter == current_user
           - if review.has_submissions?

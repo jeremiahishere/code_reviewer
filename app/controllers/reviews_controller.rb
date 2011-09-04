@@ -89,13 +89,21 @@ class ReviewsController < ApplicationController
 
   def add_submission
     @review = Review.find(params[:id])
-    @submission = ReviewSubmission.new(:review => @review, :submission_date => Time.now)
+    @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
     respond_to do |format|
       if @submission.save
         format.html { redirect_to(reviews_url, :notice => "Submission created sucessfully") }
       else
-        format.html { redirect_to(reviews_url, :notice => "Submission was not created successfully") }
+        format.html { redirect_to(reviews_url, :notice => "Submission was not created successfully #{@submission.errors}") }
       end
+    end
+  end
+
+  def review_submission
+    @review = Review.find(params[:id])
+    @submission = ReviewSubmission.where(:review_id => @review.id).order(:submission_date).first
+    respond_to do |format|
+      format.html # review.html.haml
     end
   end
 end

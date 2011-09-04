@@ -1,0 +1,10 @@
+%h2 Review
+
+%ul
+  %li= @review.submitter.name
+  %li= @review.project.name
+  %li= @review.development_branch
+
+%h2 Submission
+%pre
+  = @submission.diff_text

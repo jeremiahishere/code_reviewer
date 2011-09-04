@@ -19,30 +19,35 @@ class Project < ActiveRecord::Base
   # creates a folder for the project in repos/id
   # checks out the trunk branch to be used for comparisons later
   def clone_and_pull_repo
-    FileUtils.mkdir(project_path) unless File.directory?(project_path)
-    FileUtils.mkdir(trunk_path) unless File.directory?(trunk_path)
+    FileUtils.mkdir(project_path, :mode => 0744) unless File.directory?(project_path)
 
-    clone_trunk_repo unless File.directory?(trunk_repo_path)
-    fetch_and_pull_trunk_repo
+    clone_project_repo unless File.directory?(project_repo_path)
+    fetch_and_pull_trunk
   end
 
   def project_path
     Rails.root.to_s + "/repos/" + self.id.to_s
   end
 
-  def trunk_path
-    project_path + "/trunk/"
+  def project_repo_path
+    project_path + "/" + self.repo_name + "/"
   end
 
-  def trunk_repo_path
-    trunk_path + "/" + self.repo_name + "/"
+  def clone_project_repo
+    `cd #{project_path} && git clone #{self.repo_url}`
   end
 
-  def clone_trunk_repo
-    `cd #{trunk_path} && git clone #{self.repo_url} && git fetch`
+  def fetch_and_pull_trunk
+    fetch_and_pull_branch(self.trunk_branch)
   end
 
-  def fetch_and_pull_trunk_repo
-    `cd #{trunk_repo_path} && git fetch && git checkout #{self.trunk_branch} && git pull origin #{self.trunk_branch}`
+  # fetch, checkout branch, pull branch, checkout trunk branch
+  def fetch_and_pull_branch(branch_name)
+    `cd #{project_repo_path} && git fetch && git checkout #{branch_name} && git pull origin #{branch_name} && checkout #{self.trunk_branch}`
+  end
+
+  # runs a diff on the branch and trunk
+  def diff_branch(branch_name)
+    `cd #{project_repo_path} && git diff #{self.trunk_branch}..#{branch_name}`
   end
 end
