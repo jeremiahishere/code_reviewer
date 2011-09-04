@@ -11,7 +11,7 @@ Review code in github repos
 4. The code review should automatically create a diff and email all the project members
 5. Click on the view diff link on the review page to see the diff and vote on the code
 6. When all members and 1 manager (if that option is selected) have voted to accept, the close link on the review page will appear
-  1. If the code needs changes, push the branch with the changes and click the resubmit link, this resets everyone's voteds
+  1. If the code needs changes, push the branch with the changes and click the resubmit link, this resets everyone's votes
 7. Click the close link to complete the review
 8. Manually merge the project in github
 
@@ -22,6 +22,7 @@ Review code in github repos
 * Diff creation and review
 * Voting system; users can vote to accept or reject a code review
 * Vote tallying and review closing when enough people have voted to accept a change
+* Leaving comments for code reviews
 
 = Stuff that partially works
 
@@ -39,7 +40,7 @@ Review code in github repos
   * notification of all managers on review resubmission
   * notification to the requesting user when a submission is voted or commented on
   * notification to the requesting user when a submiession is approved through the voting system
-* The entire commenting system
 * A better voting system using pure ajax calls that updates other sections of the page
+* A better commenting system using pure ajax calls that updates other sections of the page
 * Diff parsing that includes highlighting based on addition and reomval of code and code folding based on file
   * line numbers would be nice as well
