@@ -3,7 +3,7 @@ module ReviewsHelper
     disp_text = ""
     started = false
     diff_text.each_line  do |line|
-      if line.match("---")
+      if line.match("diff --git")
         if started
           disp_text += "</pre></div>"
         else
