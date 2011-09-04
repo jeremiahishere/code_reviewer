@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def self.coders
     User.all.select { |u| u.has_role?(:coder) }
   end
+
+  def self.managers
+    User.all.select { |u| u.has_role?(:manager) }
+  end
 end

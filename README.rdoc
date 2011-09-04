@@ -31,16 +31,11 @@ Review code in github repos
 
 * Adding a private project: you have to manually figure out the server's public key and add it to your project
 * Diff creation might be backwards wit the + and - lines reversed
+* Email notificaitons are not tested
+* Text in email notifications is terrible
 
 = Stuff that is not included yet
 
-* All email ontifications including:
-  * notification of all project members on review submission
-  * notification of all managers on review submission
-  * notification of all project members on review resubmission
-  * notification of all managers on review resubmission
-  * notification to the requesting user when a submission is voted or commented on
-  * notification to the requesting user when a submiession is approved through the voting system
 * A better voting system using pure ajax calls that updates other sections of the page
 * A better commenting system using pure ajax calls that updates other sections of the page
 * Diff parsing that includes highlighting based on addition and reomval of code and code folding based on file

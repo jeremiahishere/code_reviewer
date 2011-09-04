@@ -1,0 +1,7 @@
+%p
+  A vote has been added to your review by
+  = @vote.user.name
+%p
+  = @vote.display_vote
+
+= link_to "Review", review_review_submission_url(@vote.review)

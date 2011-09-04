@@ -2,7 +2,8 @@
   A Code review has been requested for
   = @submission.project.name
   by
-  = @submission.user.name
-  .  Please review the code and approve or comment on it.
+  = @submission.review.submitter.name
+%p
+  Please review the code and approve or comment on it.
 
-= link_to "Review", review_review_submission_path(@submission)
+= link_to "Review", review_review_submission_url(@submission)

@@ -30,6 +30,7 @@
         = review.member_votes.to_s + "/" + review.member_votes_needed.to_s
         - if review.manager_votes_needed > 0
           %br
+          Manager:
           = review.manager_votes.to_s + "/" + review.manager_votes_needed.to_s
       %td= link_to "View Diff", review_review_submission_path(review)
       %td

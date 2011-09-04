@@ -1,0 +1,7 @@
+%p
+  A comment has been added to your review by
+  = @comment.user.name
+%p
+  = @comment.comment
+
+= link_to "Review", review_review_submission_url(@comment.review_submission.review)

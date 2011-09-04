@@ -7,6 +7,12 @@ class ReviewVotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
+        if @vote.review.approved?
+          SubmissionNotifier.deliver_approval_notification(@vote.review)
+        else
+          SubmissionNotifier.deliver_vote_notification(@vote)
+        end
+
         format.html { redirect_to(reviews_url, :notice => "Your vote was succsefully cast.")}
       else
         format.html { redirect_to(reviews_url, :notice => "Your vote was not succsefully cast.")}
