@@ -5,6 +5,8 @@ CodeReviewer::Application.routes.draw do
   resources :reviews
   match "reviews/:id/add_submission", :to => "reviews#add_submission", :as => "review_add_submission"
   match "reviews/:id/review_submission", :to => "reviews#review_submission", :as => "review_review_submission"
+  match "review/:id/close", :to => "reviews#close", :as => "review_close"
+
 
   match "votes/:id", :to => "review_votes#vote", :as => "review_vote"
 

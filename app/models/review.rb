@@ -20,8 +20,8 @@ class Review < ActiveRecord::Base
     all.select { |r| r.project.members.include?(user) }
   end
 
-  scope :active, lambda { where(["close_date is not null"]) }
-  scope :closed, lambda { where(["close_date is null"]) }
+  scope :closed, lambda { where(["close_date is not null"]) }
+  scope :active, lambda { where(["close_date is null"]) }
 
   def closed?
     return !self.close_date.nil?
@@ -33,5 +33,51 @@ class Review < ActiveRecord::Base
 
   def votes
     self.review_votes
+  end
+
+  # determines if the review has been approved
+  # returns true if the number of acepting member votes matches the number of members
+  # and returns true if it has at least one accepting manager vote and requires a manager vote
+  def approved?
+    meets_approval_requirements = true
+    meets_approval_requirements = false if member_votes < member_votes_needed
+    meets_approval_requirements = false if(manager_votes < manager_votes_needed && self.project.require_manager_approval)
+    return meets_approval_requirements
+  end
+
+  # number of votes from members
+  def member_votes
+    member_votes = 0
+    self.votes.each do |vote|
+      if self.project.members.include?(vote.user)
+        member_votes += vote.vote
+      end
+    end
+    return member_votes
+  end
+
+  # number of votes from memebers needed
+  def member_votes_needed
+    return self.project.members.length
+  end
+
+  # number of votes from managers who are not members
+  def manager_votes
+    manager_votes = 0
+    self.votes.each do |vote|
+      # managers who are not members
+      if !self.project.members.include?(vote.user) && vote.user.has_role?(:manager)
+        manager_votes += vote.vote
+      end
+    end
+    return manager_votes
+  end
+
+  def manager_votes_needed
+    if self.project.require_manager_approval
+      return 1
+    else
+      return 0
+    end
   end
 end

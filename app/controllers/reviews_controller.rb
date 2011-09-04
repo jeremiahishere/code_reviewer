@@ -6,7 +6,8 @@ class ReviewsController < ApplicationController
     if params[:all] == 'y'
       @reviews = Review.all
     else
-      @reviews = Review.member_reviews(current_user)
+      # should this only be active?
+      @reviews = Review.active.member_reviews(current_user)
     end
 
     respond_to do |format|
@@ -116,6 +117,19 @@ class ReviewsController < ApplicationController
     @vote = ReviewVote.where(:review_id => @review.id, :user_id => current_user.id).first
     respond_to do |format|
       format.html # review.html.haml
+    end
+  end
+
+  def close
+    @review = Review.find(params[:id])
+    respond_to do |format|
+      if @review.approved?
+        @review.close_date = Time.now
+        @review.save
+        format.html { redirect_to(reviews_url, :notice => "Review closed sucessfully") }
+      else
+        format.html { redirect_to(reviews_url, :notice => "Review cannot be closed until it is approved") }
+      end
     end
   end
 end

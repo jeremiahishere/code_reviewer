@@ -5,7 +5,8 @@
     %th Submitter
     %th Project
     %th Development branch
-    %th Closed
+    %th Status
+    %th Votes
     %th
     %th
     %th
@@ -16,17 +17,34 @@
       %td= review.submitter.name
       %td= review.project.name
       %td= review.development_branch
-      %td= review.closed?
+      %td
+        - if review.closed?
+          Closed On:
+          = review.close_date
+        - elsif review.approved?
+          = link_to "Close", review_close_path(review)
+        - else
+          Open
+      %td
+        Member:
+        = review.member_votes.to_s + "/" + review.member_votes_needed.to_s
+        - if review.manager_votes_needed > 0
+          %br
+          = review.manager_votes.to_s + "/" + review.manager_votes_needed.to_s
       %td= link_to "View Diff", review_review_submission_path(review)
       %td
-        - if review.submitter == current_user
+        - if review.submitter == current_user && !review.closed?
           - if review.has_submissions?
             = link_to "Resubmit", review_add_submission_path(review)
           - else
             = link_to "Submit", review_add_submission_path(review)
       %td= link_to 'Show', review
-      %td= link_to 'Edit', edit_review_path(review)
-      %td= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete
+      %td
+        - if !review.closed?
+          = link_to 'Edit', edit_review_path(review)
+      %td
+        - if !review.closed?
+          = link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
