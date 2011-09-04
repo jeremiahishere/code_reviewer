@@ -47,10 +47,15 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(params[:review])
     @review.submitter = current_user
+    @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to(@review, :notice => 'Review was successfully created.') }
+        if @submission.save
+          format.html { redirect_to(@review, :notice => 'Review and Submission were successfully created.') }
+        else
+          format.html { redirect_to(@review, :notice => 'Review was successfully created but the submission was not.') }
+        end
         format.xml  { render :xml => @review, :status => :created, :location => @review }
       else
         format.html { render :action => "new" }
@@ -63,9 +68,15 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1.xml
   def update
     @review = Review.find(params[:id])
+    @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
 
     respond_to do |format|
       if @review.update_attributes(params[:review])
+        if @submission.save
+          format.html { redirect_to(@review, :notice => 'Review and Submission were successfully created.') }
+        else
+          format.html { redirect_to(@review, :notice => 'Review was successfully created but the submission was not.') }
+        end
         format.html { redirect_to(@review, :notice => 'Review was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -101,7 +112,7 @@ class ReviewsController < ApplicationController
 
   def review_submission
     @review = Review.find(params[:id])
-    @submission = ReviewSubmission.where(:review_id => @review.id).order(:submission_date).first
+    @submission = ReviewSubmission.where(:review_id => @review.id).order(:submission_date).last
     respond_to do |format|
       format.html # review.html.haml
     end

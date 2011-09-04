@@ -5,6 +5,8 @@
   %li= @review.project.name
   %li= @review.development_branch
 
-%h2 Submission
+%h2 
+  Submission number
+  = @submission.id.to_s
 %pre
   = @submission.diff_text
