@@ -46,3 +46,24 @@ a, a:visited {
 .comment_element .body {
   padding: 5px;
 }
+
+.codeblock {
+  outline: 1px solid black;
+  margin: 25px;
+  overflow: auto;
+}
+
+.codeblock .added_code {
+  background-color: #CCFFCC;
+  padding: 0px 5px;
+}
+
+.codeblock .removed_code {
+  background-color: #FFCCCC;
+  padding: 0px 5px;
+}
+
+.codeblock .unchanged_code {
+  background-color: #EEEEEE;
+  padding: 0px 5px;
+}

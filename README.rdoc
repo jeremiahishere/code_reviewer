@@ -31,7 +31,7 @@ Review code in github repos
 = Stuff that partially works
 
 * Adding a private project: you have to manually figure out the server's public key and add it to your project
-* Diff creation might be backwards wit the + and - lines reversed
+* Diff creation might be backwards with the + and - lines reversed
 * Email notificaitons are not tested
 * Text in email notifications is terrible
 
@@ -39,5 +39,4 @@ Review code in github repos
 
 * A better voting system using pure ajax calls that updates other sections of the page
 * A better commenting system using pure ajax calls that updates other sections of the page
-* Diff parsing that includes highlighting based on addition and reomval of code and code folding based on file
-  * line numbers would be nice as well
+* Line numbers on the diff

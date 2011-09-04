@@ -40,5 +40,5 @@
 %h2 
   Submission number
   = @submission.id.to_s
-%pre
-  = @submission.diff_text
+
+= display_diff(@submission.diff_text)
