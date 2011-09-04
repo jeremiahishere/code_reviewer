@@ -26,6 +26,7 @@ Review code in github repos
 * Permission system stops you from seeing what you aren't supposed to
   * Unless you guess the url, not yet a cancan expert
   * Also determines who is a manager for votes, and who can be on a project (coders only)
+* Email notifications when a review is created, resubmitted, or has an action performed on it
 
 = Stuff that partially works
 
