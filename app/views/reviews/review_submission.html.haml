@@ -18,6 +18,25 @@
   = f.buttons
 %p
   Make this auto submit on vote change.  Also update the member votes partial to update via ajax every few seconds and after this form submits.  May want to add a vote description at some point but that is far in the future.
+
+%h3 Comments
+= semantic_form_for @comment, :url => add_comment_path, :remote => true  do |f|
+  = f.semantic_errors
+  = f.inputs do
+    = f.input :user_id, :as => :hidden, :value => current_user.id
+    = f.input :review_submission_id, :as => :hidden, :value => @submission.id
+    = f.input :comment, :as => :text, :input_html => {:rows => 8, :cols => 50}
+  = f.buttons
+
+- @review.comments.each do |comment|
+  .comment_element
+    .header
+      = comment.post_date.strftime("%b %d, %Y %l:%M %p") + ": " + comment.user.name
+    .body
+      = comment.comment
+%p
+  The comment section needs the same thing done to it that is happening to the voting section.  It also needs to delete the comments contents on submit.
+
 %h2 
   Submission number
   = @submission.id.to_s

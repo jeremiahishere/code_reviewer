@@ -10,11 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904032201) do
+ActiveRecord::Schema.define(:version => 20110904184529) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "review_submission_id"
+    t.integer  "user_id"
+    t.datetime "post_date"
+    t.integer  "parent_comment_id"
+    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

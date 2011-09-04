@@ -32,3 +32,17 @@ form {
 a, a:visited {
   color: #333355;
 }
+
+.comment_element  {
+  outline: 1px solid black;
+  margin: 25px;
+}
+
+.comment_element .header {
+  background-color: #6D9BF1;
+  padding: 5px 5px 10px 5px;
+}
+
+.comment_element .body {
+  padding: 5px;
+}

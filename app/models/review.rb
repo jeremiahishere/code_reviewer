@@ -80,4 +80,15 @@ class Review < ActiveRecord::Base
       return 0
     end
   end
+
+  # a list of all comments from all submissions
+  def comments
+    comments = []
+    self.review_submissions.each do |submission|
+      submission.comments.each do |comment|
+        comments.push(comment)
+      end
+    end
+    return comments
+  end
 end

@@ -115,6 +115,10 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @submission = ReviewSubmission.where(:review_id => @review.id).order(:submission_date).last
     @vote = ReviewVote.where(:review_id => @review.id, :user_id => current_user.id).first
+
+    # not sure that this should go here
+    @comment = Comment.new
+
     respond_to do |format|
       format.html # review.html.haml
     end

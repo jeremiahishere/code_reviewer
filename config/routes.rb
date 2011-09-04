@@ -7,8 +7,8 @@ CodeReviewer::Application.routes.draw do
   match "reviews/:id/review_submission", :to => "reviews#review_submission", :as => "review_review_submission"
   match "review/:id/close", :to => "reviews#close", :as => "review_close"
 
-
   match "votes/:id", :to => "review_votes#vote", :as => "review_vote"
+  match "add_comment", :to => "comments#add_comment", :as => "add_comment"
 
   root :to => "pages#index"
 
