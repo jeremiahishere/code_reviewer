@@ -6,4 +6,13 @@
     %tr
       %td= vote.user.name
       %td= vote.display_vote
-
+:javascript
+  function update_member_votes()  {
+    $.ajax({
+      url: "/votes/review_id/update_member_votes",
+      datatype: "json",
+      success: function(json) {
+        //probably need to restructure the votes to make this work
+      },
+    });
+  }

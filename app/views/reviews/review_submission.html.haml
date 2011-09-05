@@ -9,15 +9,20 @@
 = render :partial => "member_votes", :locals => { :review => @review }  
 
 %h3 Vote
-= semantic_form_for @vote, :remote => true do |f|
+= semantic_form_for @vote, :remote => true, :name => "vote form"  do |f|
   = f.semantic_errors
   = f.inputs do
     = f.input :user_id, :as => :hidden, :value => current_user.id
     = f.input :review_id, :as => :hidden, :value => @review.id
     = f.input :vote, :as => :radio, :collection => ReviewVote.allowable_votes
-  = f.buttons
+  = f.buttons do
+    = f.commit_button "Vote"
 %p
   Make this auto submit on vote change.  Also update the member votes partial to update via ajax every few seconds and after this form submits.  May want to add a vote description at some point but that is far in the future.
+:javascript
+  $('form[id^=edit_review_vote]').bind("ajax:success", function(event) {
+    update_member_votes()
+  });
 
 %h3 Comments
 = semantic_form_for @comment, :url => add_comment_path, :remote => true do |f|
