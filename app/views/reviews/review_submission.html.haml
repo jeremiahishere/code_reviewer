@@ -19,10 +19,6 @@
     = f.commit_button "Vote"
 %p
   Make this auto submit on vote change.  Also update the member votes partial to update via ajax every few seconds and after this form submits.  May want to add a vote description at some point but that is far in the future.
-:javascript
-  $('form[id^=edit_review_vote]').bind("ajax:success", function(event) {
-    update_member_votes()
-  });
 
 %h3 Comments
 = semantic_form_for @comment, :url => add_comment_path, :remote => true do |f|
@@ -32,6 +28,20 @@
     = f.input :review_submission_id, :as => :hidden, :value => @submission.id
     = f.input :comment, :as => :text, :input_html => {:rows => 8, :cols => 50}
   = f.buttons
+
+:javascript
+  $(document).ready(function()  {
+    $('form[id^=edit_review_vote]').bind("ajax:success", function(event) {
+      //cheating and just reloading the page
+      location.reload();
+      //update_member_votes()
+    });
+    $('form[id^=new_comment]').bind("ajax:success", function(event) {
+      //cheating and just reloading the page
+      location.reload();
+    });
+  });
+
 
 - @review.comments.each do |comment|
   .comment_element
