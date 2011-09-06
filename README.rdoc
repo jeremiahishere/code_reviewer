@@ -44,3 +44,4 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
 * A better voting system using pure ajax calls that updates other sections of the page
 * A better commenting system using pure ajax calls that updates other sections of the page
 * Line numbers on the diff
+* Found major error where links in emails are not working correctly
