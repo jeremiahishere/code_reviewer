@@ -1,7 +1,8 @@
 require "bundler/capistrano"
 set :application, "code_reviewer"
-
 set :repository,  "git@github.com:jeremiahishere/code_reviewer.git"
+set :deploy_to, "/srv/#{application}"
+set :rails_env, :production
 
 set :scm, :git
 set :branch, "master"
@@ -31,7 +32,7 @@ end
 task :fix_permissions_and_symlink do
   run "chown www-data.www-data /srv/#{application} -R"
   run "chmod -R 777 /srv/#{application}/shared/log"
-  run "ln -s /srv/#{application}/current/repos /srv/#{application}/shared/repos"
+  run "ln -s /srv/#{application}/shared/repos /srv/#{application}/current/repos"
 end
 after "deploy", :fix_permissions_and_symlink
 
