@@ -4,6 +4,10 @@
     = f.input :name 
     = f.input :repo_name, :hint => "This must match the repos name in git"
     = f.input :repo_url, :size => 150, :hint => "The code review server needs to have access to the project.  Use a readonly url for a public project or add the key to github for a private project."
+    %p
+      The server's public key may need to be added to your project if it is private.  This needs to be styled.
+    %pre
+      = server_public_key
     = f.input :trunk_branch, :hint => "This is the default branch your reviews will compare to."
     = f.input :require_manager_approval, :hint => "If this is set to true, the code reviews muts be approved by all users on the project and at least one manager not on the project."
     = f.input :users, :as => :check_boxes, :collection => User.coders, :label => "Members", :hint => "Each selected user here has to accept a code review before it is approved."

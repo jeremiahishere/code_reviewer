@@ -1,4 +1,8 @@
 module ReviewsHelper
+  def server_public_key(path = "~/.ssh/id_rsa.pub")
+    `cat #{path}`
+  end
+
   def display_diff(diff_text)
     disp_text = ""
     started = false
