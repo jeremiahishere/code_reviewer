@@ -26,15 +26,11 @@ namespace :deploy do
     #run "service apache2 restart"
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
-
+  task :symlink do
+    run "ln -s /srv/#{application}/shared/repos /srv/#{application}/current/repos"
+  end
 end
 
-task :fix_permissions_and_symlink do
-  run "chown www-data.www-data /srv/#{application} -R"
-  run "chmod -R 777 /srv/#{application}/shared/log"
-  run "ln -s /srv/#{application}/shared/repos /srv/#{application}/current/repos"
-end
-after "deploy", :fix_permissions_and_symlink
 
 namespace :db do
   task :reset do
