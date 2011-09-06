@@ -24,13 +24,14 @@ namespace :deploy do
 
   task :restart do
     #run "service apache2 restart"
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
-  task :symlink do
-    run "ln -s /srv/#{application}/shared/repos /srv/#{application}/current/repos"
+    #run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
 
+task :symlink_repos do
+  run "ln -s /srv/#{application}/shared/repos /srv/#{application}/current/repos"
+end
+after "deploy", "symlink_repos"
 
 namespace :db do
   task :reset do
