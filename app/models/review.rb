@@ -12,7 +12,9 @@ class Review < ActiveRecord::Base
   # and set them to no opinion
   def create_votes
     self.project.members.each do |member|
-      ReviewVote.create(:review_id => self.id, :user_id => member.id, :vote => ReviewVote.allowable_votes[:no_opinion])
+      if ReviewVote.where(:review_id => self.id, :user_id => member.id).length == 0
+        ReviewVote.create(:review_id => self.id, :user_id => member.id, :vote => ReviewVote.allowable_votes[:no_opinion])
+      end
     end
   end
 
