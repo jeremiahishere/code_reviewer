@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
       if @review.save
         @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
         if @submission.save
-          SubmissionNotifier.deliver_new_submission_notification(@submission)
+          #SubmissionNotifier.deliver_new_submission_notification(@submission)
           format.html { redirect_to(@review, :notice => 'Review and Submission were successfully created.') }
         else
           format.html { redirect_to(@review, :notice => 'Review was successfully created but the submission was not.') }
@@ -75,7 +75,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.update_attributes(params[:review])
         if @submission.save
-          SubmissionNotifier.deliver_resubmission_notification(@submission)
+          #SubmissionNotifier.deliver_resubmission_notification(@submission)
           format.html { redirect_to(@review, :notice => 'Review and Submission were successfully created.') }
         else
           format.html { redirect_to(@review, :notice => 'Review was successfully created but the submission was not.') }
@@ -106,7 +106,7 @@ class ReviewsController < ApplicationController
     @submission = ReviewSubmission.new(:review_id => @review.id, :submission_date => Time.now)
     respond_to do |format|
       if @submission.save
-        SubmissionNotifier.deliver_resubmission_notification(@submission)
+        #SubmissionNotifier.deliver_resubmission_notification(@submission)
         format.html { redirect_to(reviews_url, :notice => "Submission created sucessfully") }
       else
         format.html { redirect_to(reviews_url, :notice => "Submission was not created successfully #{@submission.errors}") }

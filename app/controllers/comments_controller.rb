@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.post_date = Time.now
     respond_to do |format|
       if @comment.save
-        SubmissionNotifier.deliver_comment_notification(@comment)
+        #SubmissionNotifier.deliver_comment_notification(@comment)
         format.html { redirect_to(reviews_url, :notice => "Comment added succesfully")}
       else
         format.html { redirect_to(reviews_url, :notice => "Comment not added succesfully")}
