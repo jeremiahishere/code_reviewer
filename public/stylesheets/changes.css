@@ -67,3 +67,7 @@ a, a:visited {
   background-color: #EEEEEE;
   padding: 0px 5px;
 }
+
+li.hidden {
+  display: none;
+}
