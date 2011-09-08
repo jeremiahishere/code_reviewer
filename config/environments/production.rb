@@ -37,6 +37,9 @@ CodeReviewer::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'cr.jeremiahhemphill.com' }
+  # turns off some sort of encryption that isn't allowed on my installing of postfix
+  # not exactly sure how it works
+  ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
 
   # Enable threaded mode
   # config.threadsafe!
