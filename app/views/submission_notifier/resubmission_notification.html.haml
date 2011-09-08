@@ -1,9 +1,9 @@
 %p
-  A Code review has been requested for
+  A Code review has been resubmitted for
   = @submission.project.name
   by
   = @submission.review.submitter.name
 %p
-  Please review the code and approve or comment on it.
+  Your vote has been reset to 'No Opinion'. Please review the code and approve or comment on it.
 
-= link_to "Review", review_review_submission_url(@submission)
+= link_to "Review", review_review_submission_url(@submission.review)

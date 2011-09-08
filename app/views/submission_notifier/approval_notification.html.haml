@@ -1,4 +1,9 @@
 %p
-  Your review has been approved
-
+  Your review for
+  = @review.development_branch
+  on 
+  = @review.project.name
+  has been approved.
+%p
+ Go here to close the the review.
 = link_to "Reviews", reviews_url
