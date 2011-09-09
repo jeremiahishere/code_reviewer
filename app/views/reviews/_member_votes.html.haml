@@ -5,8 +5,18 @@
   - review.review_votes.each do |vote|
     %tr
       %td= vote.user.name
-      %td= vote.display_vote
+      %td
+        - if vote.vote == ReviewVote.allowable_votes[:accept]
+          .approve_vote
+            = vote.display_vote
+        - elsif vote.vote == ReviewVote.allowable_votes[:no_opinion]
+          .no_opinion_vote
+            = vote.display_vote
+        - if vote.vote == ReviewVote.allowable_votes[:reject] 
+          .reject_vote
+            = vote.display_vote
 :javascript
+  // this does not work and is hopefully not called anywhere
   function update_member_votes()  {
     $.ajax({
       url: "/votes/review_id/update_member_votes",

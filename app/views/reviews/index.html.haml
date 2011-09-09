@@ -19,12 +19,15 @@
       %td= review.development_branch
       %td
         - if review.closed?
-          Closed On:
-          = review.close_date
+          .closed_review
+            Closed On:
+            = review.close_date
         - elsif review.approved?
-          = link_to "Close", review_close_path(review)
+          .approved_review
+            = link_to "Close", review_close_path(review)
         - else
-          Open
+          .open_review
+            Open
       %td
         Member:
         = review.member_votes.to_s + "/" + review.member_votes_needed.to_s

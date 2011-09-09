@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.xml
   def index
     if params[:all] == 'y'
-      @reviews = Review.all
+      @reviews = Review.order(:close_date).all
     else
       # should this only be active?
       @reviews = Review.active.member_reviews(current_user)

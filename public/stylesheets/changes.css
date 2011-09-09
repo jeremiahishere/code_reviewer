@@ -71,3 +71,28 @@ a, a:visited {
 li.hidden {
   display: none;
 }
+
+.closed_review {
+  background-color: #FFCCCC;
+}
+
+.approved_review {
+  background-color: #FFFFCC;
+}
+
+.open_review {
+  background-color: #CCFFCC;
+}
+
+.approve_vote {
+  background-color: #CCFFCC;
+}
+
+.no_opinion_vote {
+  background-color: #FFFFCC;
+}
+
+.reject_vote {
+  background-color: #FFCCCC;
+}
+
