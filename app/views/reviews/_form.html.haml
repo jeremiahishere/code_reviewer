@@ -2,6 +2,6 @@
   = f.semantic_errors
   = f.inputs do
     = f.input :project, :as => :select, :collection => Project.member_projects(current_user)
-    = f.input :development_branch
-    = f.input :description
+    = f.input :development_branch, :input_html => { :size => 50 }
+    = f.input :description, :input_html => { :rows => 8, :cols => 48 }
   = f.buttons
