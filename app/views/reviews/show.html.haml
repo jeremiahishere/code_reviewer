@@ -8,12 +8,14 @@
   %b Development branch:
   = @review.development_branch
 %p
-  %b Close date:
-  = @review.close_date
+  %b Status:
+  = render :partial => "review_status", :locals => { :review => @review }
 %p
   %b Votes:
 = render :partial => "member_votes", :locals => { :review => @review }  
 
+= link_to "View Diff", review_review_submission_path(@review)
+\|
 = link_to 'Edit', edit_review_path(@review)
 \|
 = link_to 'Back', reviews_path

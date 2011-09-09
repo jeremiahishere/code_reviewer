@@ -1,0 +1,10 @@
+- if review.closed?
+  .closed_review
+    Closed On:
+    = review.close_date
+- elsif review.approved?
+  .approved_review
+    = link_to "Close", review_close_path(review)
+- else
+  .open_review
+    Open

@@ -37,8 +37,6 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
 * A better voting system using pure ajax calls that updates other sections of the page
 * A better commenting system using pure ajax calls that updates other sections of the page
 * Line numbers on the diff
-* add link to diff page on review show 
-* add link to reviews on project show 
 * style the homepage
 * add link to github on project show page and diff page 
 * add commit message above the diff (how to get all the commits for a branch)

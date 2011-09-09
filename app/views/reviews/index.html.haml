@@ -17,17 +17,7 @@
       %td= review.submitter.name
       %td= review.project.name
       %td= review.development_branch
-      %td
-        - if review.closed?
-          .closed_review
-            Closed On:
-            = review.close_date
-        - elsif review.approved?
-          .approved_review
-            = link_to "Close", review_close_path(review)
-        - else
-          .open_review
-            Open
+      %td= render :partial => "review_status", :locals => { :review => review }
       %td
         Member:
         = review.member_votes.to_s + "/" + review.member_votes_needed.to_s
