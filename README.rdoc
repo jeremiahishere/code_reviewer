@@ -32,16 +32,19 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
   * Also determines who is a manager for votes, and who can be on a project (coders only)
 * Email notifications when a review is created, resubmitted, or has an action performed on it
 
-= Stuff that partially works
-
-* Adding a private project: you have to manually figure out the server's public key and add it to your project
-* Diff creation might be backwards with the + and - lines reversed
-* Email notificaitons are not tested
-* Text in email notifications is terrible
-
 = Stuff that is not included yet
 
 * A better voting system using pure ajax calls that updates other sections of the page
 * A better commenting system using pure ajax calls that updates other sections of the page
 * Line numbers on the diff
-* Found major error where links in emails are not working correctly
+* remove commenting and voting on closed reviews
+* change the ordering on the all reviews page to show open or closed
+  * maybe separate to open, approved, and closed sections
+* fix widht for the development branch text input and description text field on the review form 
+* add link to diff page on review show 
+* add link to reviews on project show 
+* fix space on line 8 of the vote submission notificaiton
+* style the homepage
+* add link to github on project show page and diff page 
+* add commit message above the diff (how to get all the commits for a branch)
+* add submission number to emails
