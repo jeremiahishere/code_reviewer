@@ -13,15 +13,19 @@
       %h3 Votes
   .row
     .seven.columns.alpha
-      = semantic_form_for @vote, :remote => true, :name => "vote form"  do |f|
-        = f.semantic_errors
-        = f.inputs do
-          = f.input :user_id, :as => :hidden, :value => current_user.id
-          = f.input :review_id, :as => :hidden, :value => @review.id
-          = f.input :vote, :as => :radio, :collection => ReviewVote.allowable_votes
-        = f.buttons do
-          = f.commit_button "Vote"
-      -# Make this auto submit on vote change.  Also update the member votes partial to update via ajax every few seconds and after this form submits.  May want to add a vote description at some point but that is far in the future.
+      - if @review.closed?
+        %p
+          Voting is disabled on closed reviews
+      - else
+        = semantic_form_for @vote, :remote => true, :name => "vote form"  do |f|
+          = f.semantic_errors
+          = f.inputs do
+            = f.input :user_id, :as => :hidden, :value => current_user.id
+            = f.input :review_id, :as => :hidden, :value => @review.id
+            = f.input :vote, :as => :radio, :collection => ReviewVote.allowable_votes
+          = f.buttons do
+            = f.commit_button "Vote"
+        -# Make this auto submit on vote change.  Also update the member votes partial to update via ajax every few seconds and after this form submits.  May want to add a vote description at some point but that is far in the future.
     .nine.columns.omega
       = render :partial => "member_votes", :locals => { :review => @review }  
   .row
@@ -29,15 +33,18 @@
       %h3 Comments
   .row
     .five.columns.alpha
-      = semantic_form_for @comment, :url => add_comment_path, :remote => true do |f|
-        = f.semantic_errors
-        = f.inputs do
-          = f.input :user_id, :as => :hidden, :value => current_user.id
-          = f.input :review_submission_id, :as => :hidden, :value => @submission.id
-          = f.input :comment, :as => :text, :input_html => {:rows => 8, :cols => 35}
-        = f.buttons do
-          = f.commit_button "Comment"
-
+      - if @review.closed?
+        %p
+          Commenting is disabled on closed reviews
+      - else
+        = semantic_form_for @comment, :url => add_comment_path, :remote => true do |f|
+          = f.semantic_errors
+          = f.inputs do
+            = f.input :user_id, :as => :hidden, :value => current_user.id
+            = f.input :review_submission_id, :as => :hidden, :value => @submission.id
+            = f.input :comment, :as => :text, :input_html => {:rows => 8, :cols => 35}
+          = f.buttons do
+            = f.commit_button "Comment"
     .eleven.columns.omega
       - @review.comments.each do |comment|
         .comment_element
