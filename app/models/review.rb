@@ -33,6 +33,11 @@ class Review < ActiveRecord::Base
     return self.review_submissions.length > 0
   end
 
+  # @return [ReviewSubmission] The last submission for the review based ont he submission date
+  def last_submission
+    self.review_submissions.sort_by(&:submission_date).last
+  end
+
   def votes
     self.review_votes
   end

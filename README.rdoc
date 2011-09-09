@@ -43,8 +43,9 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
 * fix widht for the development branch text input and description text field on the review form 
 * add link to diff page on review show 
 * add link to reviews on project show 
-* fix space on line 8 of the vote submission notificaiton
 * style the homepage
 * add link to github on project show page and diff page 
 * add commit message above the diff (how to get all the commits for a branch)
+
+* fix space on line 8 of the vote submission notificaiton
 * add submission number to emails

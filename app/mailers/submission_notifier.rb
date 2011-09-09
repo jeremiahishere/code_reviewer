@@ -4,13 +4,13 @@ class SubmissionNotifier < ActionMailer::Base
   def new_submission_notification(submission)
     @submission = submission
     recipients = submission.project.members.collect { |m| m.email } | User.managers.collect { |m| m.email }
-    mail(:to => recipients, :subject => "A code review has been requested for #{submission.project.name}")
+    mail(:to => recipients, :subject => "A code review has been submitted for #{submission.project.name} (#{submission.id})")
   end
 
   def resubmission_notification(submission)
     @submission = submission
     recipients = submission.project.members.collect { |m| m.email } | User.managers.collect { |m| m.email }
-    mail(:to => recipients, :subject => "A code review has been submitted for #{submission.project.name}")
+    mail(:to => recipients, :subject => "A code review has been resubmitted for #{submission.project.name} (#{submission.id})")
   end
 
   def vote_notification(vote)

@@ -116,7 +116,7 @@ class ReviewsController < ApplicationController
 
   def review_submission
     @review = Review.find(params[:id])
-    @submission = ReviewSubmission.where(:review_id => @review.id).order(:submission_date).last
+    @submission = @review.last_submission
     votes = ReviewVote.where(:review_id => @review.id, :user_id => current_user.id)
     if votes.length > 0
       @vote = votes.first
