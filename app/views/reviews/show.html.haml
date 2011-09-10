@@ -8,6 +8,9 @@
   %b Development branch:
   = @review.development_branch
 %p
+  %b Description:
+  = simple_format(@review.description)
+%p
   %b Status:
   = render :partial => "review_status", :locals => { :review => @review }
 %p

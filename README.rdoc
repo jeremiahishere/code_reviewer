@@ -41,4 +41,3 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
 * add link to github on project show page and diff page 
 * add commit message above the diff (how to get all the commits for a branch)
 * Add a pending reviews section to the homepage that includes reviews you haven't voted on and reviews that are ready to be closed
-* Fix line breaks in description and comments

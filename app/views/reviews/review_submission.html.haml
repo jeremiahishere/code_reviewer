@@ -5,7 +5,7 @@
   %li= @review.project.name
   %li= @review.development_branch
   %li
-    %p= @review.description
+    %p= simple_format(@review.description)
 
 .sixteen.columns.clearfix
   .row
@@ -51,7 +51,7 @@
           .header
             = comment.post_date.strftime("%b %d, %Y %l:%M %p") + ": " + comment.user.name
           .body
-            = comment.comment
+            = simple_format(comment.comment)
       -# The comment section needs the same thing done to it that is happening to the voting section.  It also needs to delete the comments contents on submit.
 :javascript
   $(document).ready(function()  {
