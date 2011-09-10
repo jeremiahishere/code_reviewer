@@ -33,4 +33,24 @@ class User < ActiveRecord::Base
   def self.managers
     User.all.select { |u| u.has_role?(:manager) }
   end
+
+  # This returns reviews that the user needs to take action on
+  # Either the vote is no opinion or the review needs to be closed
+  #
+  # @return [Array] An array of reviews that the user needs to vote on or close
+  def pending_reviews
+    pending_reviews = []
+    self.projects.each do |p|
+      p.reviews.each do |r|
+        if !r.closed?
+          if r.approved? && r.submitter == self 
+            pending_reviews.push(r)
+          elsif r.review_votes.select{ |v| v.vote == ReviewVote.allowable_votes[:no_opinion] && v.user == self }
+            pending_reviews.push(r)
+          end
+        end
+      end
+    end
+    return pending_reviews
+  end
 end
