@@ -70,6 +70,6 @@
   Submission number
   = @submission.id.to_s
 %h3 Summary
-= display_diff_summary(@submission.diff_summary)
+= display_diff_summary(@submission.diff_summary) if @submission.diff_summary
 %h3 Code
-= display_diff(@submission.diff_text)
+= display_diff(@submission.diff_text) if @submission.diff_text
