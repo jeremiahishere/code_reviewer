@@ -13,9 +13,15 @@ class ReviewSubmission < ActiveRecord::Base
   def get_diff_from_repo
     project.fetch_and_pull_trunk
     project.fetch_and_pull_branch(development_branch)
+
     self.diff_text = project.diff_branch(development_branch)
     if self.diff_text.empty?
       self.diff_text = "There may be a problem with your repo or your branch name because the diff was blank.  Make sure you are not comparing the trunk branch to itself."
+    end
+
+    self.diff_summary = project.diff_branch_summary(development_branch)
+    if self.diff_summary.empty?
+      self.diff_summary = "There may be a problem with your repo or your branch name because the diff was blank.  Make sure you are not comparing the trunk branch to itself."
     end
   end
 

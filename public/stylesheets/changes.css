@@ -51,6 +51,7 @@ a, a:visited {
   outline: 1px solid black;
   margin: 25px;
   overflow: auto;
+  font-family: monospace;
 }
 
 .codeblock .added_code {
@@ -64,8 +65,16 @@ a, a:visited {
 }
 
 .codeblock .unchanged_code {
-  background-color: #EEEEEE;
+  background-color: #F8F8F8;
   padding: 0px 5px;
+}
+
+.codeblock table.diff_summary {
+  width: 100%;
+}
+.codeblock table.diff_summary td {
+  padding: 0px;
+  margin: 0px;
 }
 
 li.hidden {

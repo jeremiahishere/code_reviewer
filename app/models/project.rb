@@ -50,4 +50,9 @@ class Project < ActiveRecord::Base
   def diff_branch(branch_name)
     `cd #{project_repo_path} && git diff #{self.trunk_branch}..#{branch_name}`
   end
+
+  # runs a diff on the branch and trunk with summary and stat options
+  def diff_branch_summary(branch_name)
+    `cd #{project_repo_path} && git diff #{self.trunk_branch}..#{branch_name} --summary --stat`
+  end
 end

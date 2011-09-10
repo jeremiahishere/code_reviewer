@@ -69,5 +69,7 @@
 %h2 
   Submission number
   = @submission.id.to_s
-
+%h3 Summary
+= display_diff_summary(@submission.diff_summary)
+%h3 Code
 = display_diff(@submission.diff_text)
