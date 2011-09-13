@@ -6,4 +6,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :review_submission_id, :user_id, :post_date, :comment
+
+  def review
+    self.review_submission.review
+  end
 end

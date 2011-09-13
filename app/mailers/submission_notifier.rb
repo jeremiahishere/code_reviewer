@@ -22,7 +22,14 @@ class SubmissionNotifier < ActionMailer::Base
   def comment_notification(comment)
     @comment = comment
     @submission = comment.review_submission
-    mail(:to => comment.review_submission.review.submitter.email, :subject => "A comment has been added to your review (#{@submission.id.to_s})")
+    review_submitter = comment.review_submission.review.submitter.email
+    # this gets everyone who has commented on the review
+    # it is a potentially temporary method that will not be needed
+    # when comment trees are added
+    commenters = comment.review.comments.collect {|c| c.user.email }
+
+    emailees = commenters | [review_submitter]
+    mail(:to => emailees, :subject => "A comment has been added to your review (#{@submission.id.to_s})")
   end
 
   def approval_notification(review)
