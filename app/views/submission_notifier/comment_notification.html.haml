@@ -1,6 +1,5 @@
 %p
-  A comment has been added to your review by
-  = @comment.user.name
+  A comment has been added to your review (#{@submission.id.to_s}) by #{@comment.user.name}
 %p
   = @comment.comment
 
