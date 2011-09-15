@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
     roles.any? { |r| r.name.underscore.to_sym == role_sym }
   end
 
+  default_scope :order => :email
+
   def self.coders
     User.all.select { |u| u.has_role?(:coder) }
   end

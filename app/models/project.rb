@@ -7,6 +7,8 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :repo_url, :repo_name
 
+  default_scope :order => :name
+
   # projects the users is a member of
   def self.member_projects(user)
     all.select{ |p| p.users.include?(user) }
