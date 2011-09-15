@@ -57,4 +57,15 @@ class Project < ActiveRecord::Base
   def diff_branch_summary(branch_name)
     `cd #{project_repo_path} && git diff #{self.trunk_branch}..#{branch_name} --summary --stat`
   end
+
+  # this was put in place for an idea about listing branches in a dropdown instead of forcing users to put it in
+  # strings need to be trimmed
+  # frontend is not yet written
+  #
+  # may want to use -a
+  def branch_list
+    raw_branches = `cd #{project_repo_path} && git branch -r`
+    branches = raw_branches.split(/\n/)
+    return branches
+  end
 end
