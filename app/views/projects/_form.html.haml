@@ -3,7 +3,7 @@
   = f.inputs do
     = f.input :name, :input_html => { :size => 50 } 
     = f.input :repo_name, :input_html => { :size => 50 }, :hint => "This must match the repos name in git"
-    = f.input :repo_url, :input_html => { :size => 75 }, :hint => "The code review server needs to have access to the project.  Use a readonly url for a public project or add the key to github for a private project."
+    = f.input :repo_url, :as => :string, :input_html => { :size => 75 }, :hint => "The code review server needs to have access to the project.  Use a readonly url for a public project or add the key to github for a private project."
     %li 
       %p
         The server's public key may need to be added to your project if it is private
