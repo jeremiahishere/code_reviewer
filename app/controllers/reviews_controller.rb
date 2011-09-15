@@ -4,10 +4,10 @@ class ReviewsController < ApplicationController
   # GET /reviews.xml
   def index
     if params[:all] == 'y'
-      @reviews = Review.order(:close_date).all
+      @reviews = Review.order(:close_date).page(params[:page])
     else
       # should this only be active?
-      @reviews = Review.active.member_reviews(current_user)
+      @reviews = Kaminari.paginate_array(Review.active.member_reviews(current_user)).page(params[:page])
     end
 
     respond_to do |format|

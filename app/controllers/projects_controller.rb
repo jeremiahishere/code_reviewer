@@ -3,9 +3,9 @@ class ProjectsController < ApplicationController
   # GET /projects/all
   def index
     if params[:all] == 'y'
-      @projects = Project.all
+      @projects = Project.page(params[:page])
     else
-      @projects = Project.member_projects(current_user)
+      @projects = Kaminari.paginate_array(Project.member_projects(current_user)).page(params[:page])
     end
 
     respond_to do |format|

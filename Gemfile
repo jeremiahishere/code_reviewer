@@ -16,6 +16,7 @@ gem 'capistrano-ext', '~>1.2.1'
 gem "formtastic", "~> 1.2.4"
 gem "haml-rails", "~>0.3.4"
 gem "jquery-rails"
+gem "kaminari", "~>0.12.4"
 
 
 
