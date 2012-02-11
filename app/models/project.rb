@@ -68,4 +68,39 @@ class Project < ActiveRecord::Base
     branches = raw_branches.split(/\n/)
     return branches
   end
+
+  # updates the commit history for the trunk branch
+  def update_commit_history
+    raw_commits = `cd #{project_repo_path} && git fetch && git checkout #{self.trunk_branch} && git log --pretty='%H -::- %an -::- %s -::- %ai'`
+    raw_commits.each do |raw_commit|
+      # commit format
+      # 0 => hash
+      # 1 => author name
+      # 2 => commit message
+      # 3 => commit date
+      commit = raw_commit.split("-::-")
+      commit.collect!(&:strip)
+      # avoid issues with git log header and footer information 
+      if commit.count == 4
+        author = GitAuthor.find_or_create_by_name(commit[1])
+        # note that this breaks if two projects manage to get the same hash
+        obj = GitCommit.find_by_commit_hash(commit[0])
+        attributes = {
+          :commit_hash => commit[0],
+          :project => self, 
+          :git_author => author, 
+          :subject => commit[2], 
+          :commit_at => Time.parse(commit[3])
+        }
+        if obj.nil?
+          GitCommit.create!(attributes)
+        else
+          # for now, assume you cannot update a commit
+          # makes this run much faster
+          # obj.attributes = attriubtes
+          # obj.save!
+        end
+      end
+    end
+  end
 end

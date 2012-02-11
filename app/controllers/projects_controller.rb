@@ -13,6 +13,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # page with stats information
+  def stats
+    @project = Project.find(params[:id])
+    @contributors = GitCommit.contributors_by_project(@project)
+    @recent_commits = GitCommit.recent_commits_by_project(@project, 30.days.ago, 10)
+  end
+
   # GET /projects/1
   # GET /projects/1.xml
   def show

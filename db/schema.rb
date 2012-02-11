@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910013620) do
+ActiveRecord::Schema.define(:version => 20120211211958) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "role_id"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(:version => 20110910013620) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assignments", ["role_id"], :name => "index_assignments_on_role_id"
+  add_index "assignments", ["user_id"], :name => "index_assignments_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "review_submission_id"
@@ -29,12 +32,38 @@ ActiveRecord::Schema.define(:version => 20110910013620) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["review_submission_id"], :name => "index_comments_on_review_submission_id"
+
+  create_table "git_authors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "git_authors", ["name"], :name => "index_git_authors_on_name"
+
+  create_table "git_commits", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "git_author_id"
+    t.string   "commit_hash"
+    t.text     "subject"
+    t.datetime "commit_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "git_commits", ["git_author_id"], :name => "index_git_commits_on_git_author_id"
+  add_index "git_commits", ["project_id"], :name => "index_git_commits_on_project_id"
+
   create_table "project_members", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"
+  add_index "project_members", ["user_id"], :name => "index_project_members_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -46,6 +75,8 @@ ActiveRecord::Schema.define(:version => 20110910013620) do
     t.datetime "updated_at"
   end
 
+  add_index "projects", ["name"], :name => "index_projects_on_name"
+
   create_table "review_submissions", :force => true do |t|
     t.integer  "review_id"
     t.text     "diff_text"
@@ -56,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20110910013620) do
     t.text     "diff_summary"
   end
 
+  add_index "review_submissions", ["review_id"], :name => "index_review_submissions_on_review_id"
+
   create_table "review_votes", :force => true do |t|
     t.integer  "review_id"
     t.integer  "user_id"
@@ -63,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20110910013620) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "review_votes", ["review_id"], :name => "index_review_votes_on_review_id"
 
   create_table "reviews", :force => true do |t|
     t.integer  "project_id"
@@ -74,11 +109,15 @@ ActiveRecord::Schema.define(:version => 20110910013620) do
     t.datetime "updated_at"
   end
 
+  add_index "reviews", ["close_date"], :name => "index_reviews_on_close_date"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

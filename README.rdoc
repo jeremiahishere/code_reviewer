@@ -31,6 +31,7 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
   * Unless you guess the url, not yet a cancan expert
   * Also determines who is a manager for votes, and who can be on a project (coders only)
 * Email notifications when a review is created, resubmitted, or has an action performed on it
+* Commit history and statistics
 
 = Stuff that is not included yet
 
@@ -40,3 +41,12 @@ Deploy process is only partially automated.  Make sure to symlink the repos fold
   * http://stackoverflow.com/questions/2529441/how-to-work-with-diff-representation-in-git
   * Probably need to wait until there is a better representation of the diffs before this is added
   * There is currently no context in the diffs, they are stored as plain text
+* git extras support
+
+= installation notes
+
+Notes for file stats
+
+git effort ${@-`git ls-files`}
+- number of commits/active days per file
+- make sure git extras is installed

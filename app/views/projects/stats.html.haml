@@ -1,0 +1,31 @@
+%h4 Last 10 commits
+
+%table
+  %tr
+    %th Author
+    %th Date
+    %th Subject 
+  - if @recent_commits.count > 0
+    - @recent_commits.each do |commit| 
+      %tr
+        %td= commit.git_author.name
+        %td= commit.commit_at.strftime("%m/%d/%Y %I:%M:%S")
+        %td= commit.subject
+  - else
+    No commits in the last month.
+
+%h4 Top 5 Contributors
+%table
+  %tr
+    %th Author
+    %th Commits
+    %th Percentage
+  - if @contributors.count > 0
+    - @contributors[0..4].each do |contributor| 
+      %tr
+        %td= contributor[:git_author].name
+        %td= contributor[:num_commits]
+        %td
+          #{contributor[:percentage_commits]}%
+  - else
+    The commit data has not yet been loaded.

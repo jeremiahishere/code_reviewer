@@ -11,6 +11,7 @@ class ReviewSubmission < ActiveRecord::Base
   # pull our branch
   # run a diff
   def get_diff_from_repo
+    project.update_commit_history
     project.fetch_and_pull_trunk
     project.fetch_and_pull_branch(development_branch)
 
